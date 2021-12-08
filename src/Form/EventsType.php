@@ -38,6 +38,11 @@ class EventsType extends AbstractType
                 '25-35 ans' => 'age_25_35',
                 '35-45ans' => 'age_35_45',
                 '+ 45ans' => 'age_45_plus']])
+            ->add('sports',ChoiceType::class, ['label' => 'Sports', 'choices' => [
+                'Football' => 'sport_football',
+                'Running' => 'sport_running',
+                'Tennis' => 'sport_tennis',
+                'Rugby' => 'sport_rugby']])
             ->add('save', SubmitType::class, ['label' => 'Create Event']);
     }
 

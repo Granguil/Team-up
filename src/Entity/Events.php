@@ -57,6 +57,11 @@ class Events
      */
     private $age;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sports;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class Events
     public function setAge(?string $age): self
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    public function getSports(): ?string
+    {
+        return $this->sports;
+    }
+
+    public function setSports(string $sports): self
+    {
+        $this->sports = $sports;
 
         return $this;
     }

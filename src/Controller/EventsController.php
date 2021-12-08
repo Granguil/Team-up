@@ -17,7 +17,7 @@ class EventsController extends AbstractController
     public function index(EventsRepository $eventsRepository): Response
     {
 
-        $events = $eventsRepository->findAll();
+        $events = $eventsRepository->findAll([]);
         return $this->render('events/index.html.twig', [
             'controller_name' => 'EventsController',
             'events' => $events
@@ -30,14 +30,13 @@ class EventsController extends AbstractController
         $event = new Events();
         $form = $this->createForm(EventsType::class,$event);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $manager->persist($event);
             $manager->flush();
 
             $this->addFlash('event_new_success','Votre Évènement à bien été crée');
-            $this->redirectToRoute('events_index',[], Response::HTTP_SEE_OTHER);
+           return $this->redirectToRoute('events_index',[], Response::HTTP_SEE_OTHER);
 
         }
 
@@ -46,16 +45,22 @@ class EventsController extends AbstractController
             'form'=> $form->createView()
         ]);
     }
-    #[Route('/events/delete', name: 'events_delete')]
-    public function deleteEvent(EventsRepository $eventsRepository): Response
+    #[Route('/events/delete/{id}', name: 'events_delete')]
+    public function deleteEvent(EventsRepository $eventsRepository, Request $request, EntityManagerInterface $manager): Response
     {
 
-        $events = $eventsRepository->findAll();
+            $event_id = $request->attributes->get('id');
+            $event = $eventsRepository->find($event_id);
 
-        return $this->render('events/index.html.twig', [
-            'controller_name' => 'EventsController',
-            'events' => $events
-        ]);
+            $manager->remove($event);
+            $manager->flush();
+
+            $message = 'Votre Événement: [' . $event->getName() . '] à bien été supprimé';
+
+        $this->addFlash('event_delete_success',$message );
+
+        return $this->redirectToRoute('events_index',[], Response::HTTP_SEE_OTHER);
+
     }
     #[Route('/events/update', name: 'events_update')]
     public function updateEvent(EventsRepository $eventsRepository): Response
