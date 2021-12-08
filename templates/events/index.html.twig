@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Événements{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Liste des Événements</h1>
+        {% for message in app.flashes('event_new_success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('event_delete_success') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <a href='{{ path('events_new')}}' class="btn btn-primary">Nouvelle Événement</a>
+        <div class="d-flex flex-wrap">
+            {% for event in events %}
+                <div class="card col-sm-5 m-sm-2" style="-webkit-box-shadow: -2px -2px 10px 0 grey;-moz-box-shadow: -2px -2px 10px 0 grey;box-shadow: -2px -2px 10px 0 grey;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Par :<span class="font-weight-bold>">Username</span></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Début le :{{ event.date|date("m/d/Y") }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Durée : {{ event.duration|date("h:i") }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Sport : <span class="font-weight-bold">{{ event.sports }}</span></h6>
+                        <p class="card-text">{{ event.description }}</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ event.nppeoplemin }}</li>
+                            <li class="list-group-item">{{ event.nppeoplemax }}</li>
+                            <li class="list-group-item">{{ event.level }}</li>
+                            <li class="list-group-item">{{ event.age }}</li>
+                        </ul>
+                        <a class="btn btn-danger" href="{{ path('events_delete', {'id': event.id} )}}">Supprimer l'événement</a>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
