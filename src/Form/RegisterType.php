@@ -20,69 +20,69 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'Firstname',
                 'constraints' => new Length(['min' => 2,'max' => 50, ]),
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir votre prénom'
+                    'placeholder' => 'Please enter your firstname'
                 ]
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'Name',
                 'constraints' => new Length(['min' => 2,'max' => 50, ]),
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir votre nom'
+                    'placeholder' => 'Please enter your name'
                 ]
             ])
             ->add('nickname', TextType::class, [
                 'label' => 'Pseudo',
                 'constraints' => new Length(['min' => 2,'max' => 50, ]),
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir votre pseudo'
+                    'placeholder' => 'Please enter pseudo'
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse mail',
+                'label' => 'Email',
                 'constraints' => new Length(['min' => 2,'max' => 60, ]),
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir votre adresse mail'
+                    'placeholder' => 'Please enter your mail address'
                 ]
             ])
             ->add('adress', TextType::class, [
-                'label' => 'Adresse',
+                'label' => 'Adress',
                 'constraints' => new Length(['min' => 2,'max' => 80, ]),
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir votre adresse'
+                    'placeholder' => 'Please enter your address'
                 ]
             ])
             ->add('city', TextType::class, [
-                'label' => 'Ville',
+                'label' => 'City',
                 'constraints' => new Length(['min' => 2,'max' => 20, ]),
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir votre ville'
+                    'placeholder' => 'Please enter your city'
                 ]
             ])
             ->add('zipcode', NumberType::class, [
-                'label' => 'Code postal',
+                'label' => 'zipcode',
                 'constraints' => new Length(['min' => 2,'max' => 5, ]),
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir votre code postal'
+                    'placeholder' => 'Please enter your zipcode'
                 ]
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les mots de passes doivent être identiques',
-                'label' => 'Mot de passe',
+                'invalid_message' => 'Passwords must be the same',
+                'label' => 'Password',
                 'required' => true,
                 'first_options' => [
                     'label' => 'Mot de passe',
                     'attr' => [
-                        'placeholder' => 'Veuillez saisir votre mot de passe'
+                        'placeholder' => 'Please enter your password'
                     ]
                 ],
                 'second_options' => [
-                    'label' => 'Confirmer le mot de passe',
+                    'label' => 'Confirm Password',
                     'attr' => [
-                        'placeholder' => 'Veuillez confirmer votre mot de passe'
+                        'placeholder' => 'Please reenter your password'
                     ]
                 ],
                 
