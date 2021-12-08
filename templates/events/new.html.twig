@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EventsController!{% endblock %}
+{% block title %}Hello EventsController!
+{% endblock %}
 
 {% block body %}
-    <div class="example-wrapper">
-        <h1>Events</h1>
-        <div class="container-sm justify-content-center">
-            {{ form(form) }}
-        </div>
-    </div>
-{% endblock %}
+	<div class="example-wrapper">
+		<div class="container-sm justify-content-center">
+			<h1>Events</h1>
+			{{ form(form) }}
+			</div>
+		</div>
+	{% endblock %}
